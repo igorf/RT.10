@@ -1,5 +1,21 @@
-//
-// Created by Игорь Федоренко on 09.03.2018.
-//
-
+#include <HardwareSerial.h>
+#include <VirtualWire.h>
 #include "CommandSender.h"
+
+void CommandSender::init(uint8_t senderPort) {
+    port = senderPort;
+    Serial.begin(9600);
+
+    vw_set_tx_pin(port);
+    vw_setup(4000);
+}
+
+void CommandSender::send(int command) {
+    int data[1] = {command};
+
+    digitalWrite(13, true);
+    vw_send((uint8_t *)data, sizeof(data));
+    vw_wait_tx();
+    Serial.println(command);
+    digitalWrite(13, false);
+}
