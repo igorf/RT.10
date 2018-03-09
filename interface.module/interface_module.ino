@@ -9,5 +9,6 @@ void setup() {
 
 void loop() {
     modeSelector.select();
-    delay(10);
+    int mode = modeSelector.getMode();
+    delay(1);
 }

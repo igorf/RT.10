@@ -7,6 +7,8 @@ class SelectableButton {
 public:
     SelectableButton(uint8_t signal, uint8_t indicator, int mode);
     void setSelected(int selected);
+    boolean isPressedNow();
+    int getMode();
 private:
     uint8_t signalPin;
     uint8_t indicatorPin;

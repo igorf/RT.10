@@ -17,3 +17,11 @@ void SelectableButton::setSelected(int selected) {
         digitalWrite(indicatorPin, LOW);
     }
 }
+
+boolean SelectableButton::isPressedNow() {
+    return digitalRead(signalPin) == HIGH;
+}
+
+int SelectableButton::getMode() {
+    return mode;
+}
