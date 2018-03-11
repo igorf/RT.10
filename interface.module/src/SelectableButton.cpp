@@ -1,4 +1,3 @@
-#include <USBAPI.h>
 #include "SelectableButton.h"
 
 SelectableButton::SelectableButton(uint8_t signal, uint8_t indicator, int modeInput) {
@@ -19,16 +18,8 @@ void SelectableButton::setSelected(int selected) {
     }
 }
 
-boolean SelectableButton::isPressedNow() {
-    /*
+bool SelectableButton::isPressedNow() {
     return digitalRead(signalPin) == HIGH;
-     */
-    boolean pressed = digitalRead(signalPin) == HIGH;
-    if (pressed) {
-        Serial.print(signalPin);
-        Serial.print("\n");
-    }
-    return pressed;
 }
 
 int SelectableButton::getMode() {

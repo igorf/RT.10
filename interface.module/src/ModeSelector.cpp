@@ -1,4 +1,3 @@
-#include <USBAPI.h>
 #include "ModeSelector.h"
 
 void ModeSelector::select() {
@@ -28,4 +27,5 @@ void ModeSelector::changeSelectedMode(int newMode) {
     for (int i = 0; i < BUTTONS_COUNT; i++) {
         buttons[i].setSelected(buttons[i].getMode() == newMode);
     }
+    mode = newMode;
 }
