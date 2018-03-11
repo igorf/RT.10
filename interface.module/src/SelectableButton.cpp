@@ -8,6 +8,7 @@ SelectableButton::SelectableButton(uint8_t signal, uint8_t indicator, int modeIn
 
     pinMode(indicatorPin, OUTPUT);
     pinMode(signalPin, INPUT);
+    digitalWrite(signalPin, LOW);
 }
 
 void SelectableButton::setSelected(int selected) {
@@ -19,7 +20,15 @@ void SelectableButton::setSelected(int selected) {
 }
 
 boolean SelectableButton::isPressedNow() {
+    /*
     return digitalRead(signalPin) == HIGH;
+     */
+    boolean pressed = digitalRead(signalPin) == HIGH;
+    if (pressed) {
+        Serial.print(signalPin);
+        Serial.print("\n");
+    }
+    return pressed;
 }
 
 int SelectableButton::getMode() {

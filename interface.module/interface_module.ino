@@ -5,9 +5,10 @@
 ModeSelector modeSelector;
 CommandSender *commandSender = new CommandSender();
 
-const uint8_t SENDER_PIN = 11;
+const uint8_t SENDER_PIN = 1;
 
 void setup() {
+    digitalWrite(13, LOW);
     modeSelector.init(ModeSelector::MODE_SLOW);
     commandSender->init(SENDER_PIN);
 }

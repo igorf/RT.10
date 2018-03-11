@@ -17,9 +17,9 @@ private:
     static const int BUTTONS_COUNT = 3;
 
     SelectableButton buttons[BUTTONS_COUNT] = {
-            SelectableButton(1, 2, MODE_SLOW),
-            SelectableButton(7, 8, MODE_FAST),
-            SelectableButton(3, 4, MODE_RANDOM),
+            SelectableButton(A0, A1, MODE_SLOW),
+            SelectableButton(A2, A3, MODE_FAST),
+            SelectableButton(A4, A5, MODE_RANDOM),
     };
     int mode = MODE_SLOW;
 
