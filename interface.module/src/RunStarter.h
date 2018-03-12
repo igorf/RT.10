@@ -1,8 +1,8 @@
 #ifndef INTERFACE_MODULE_RUNSTARTER_H
 #define INTERFACE_MODULE_RUNSTARTER_H
 
-
 #include <stdint.h>
+#include <Button.h>
 
 class RunStarter {
 public:
@@ -10,12 +10,18 @@ public:
     void arm();
     void disarm();
     bool check();
+
 protected:
-    bool armed = false;
-    uint8_t hornsPin;
-    uint8_t startPin;
-    const long STATE_DELAY = 700;
-    unsigned long lastTime;
+    Button *hornsButton;
+    Button *startButton;
+    bool ready = true;
+    bool hornsArmed = false;
+
+    const int START_SOURCE_HORNS = 100;
+    const int START_SOURCE_BUTTON = 200;
+    const int START_SOURCE_INIT = -1;
+
+    int startSource = -1;
 };
 
 
