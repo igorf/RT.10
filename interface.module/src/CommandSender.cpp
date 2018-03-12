@@ -12,10 +12,7 @@ void CommandSender::init(uint8_t senderPort) {
 
 void CommandSender::send(int command) {
     int data[1] = {command};
-
-    digitalWrite(13, true);
     vw_send((uint8_t *)data, sizeof(data));
-    vw_wait_tx();
+    //vw_wait_tx();
     Serial.println(command);
-    digitalWrite(13, false);
 }

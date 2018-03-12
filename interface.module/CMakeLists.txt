@@ -6,13 +6,13 @@ project(${PROJECT_NAME})
 link_directories(
         "../lib/VirtualWire"
         "../lib/TM74HC595-4dig-display-master"
-        "../lib/TimerOne"
+        "../lib/MsTimer2"
 )
 
 include_directories(
         "../lib/VirtualWire"
         "../lib/TM74HC595-4dig-display-master"
-        "../lib/TimerOne"
+        "../lib/MsTimer2"
         "src/"
 )
 
@@ -22,9 +22,10 @@ file(GLOB_RECURSE TGT_SRC
 
 list(APPEND TGT_SRC "../lib/VirtualWire/VirtualWire.cpp")
 list(APPEND TGT_SRC "../lib/TM74HC595-4dig-display-master/TM74HC595Display.cpp")
-list(APPEND TGT_SRC "../lib/TimerOne/TimerOne.cpp")
+list(APPEND TGT_SRC "../lib/MsTimer2/MsTimer2.cpp")
 
 set(ARDUINO_DEFAULT_BOARD uno)
-set(ARDUINO_DEFAULT_PORT /dev/tty.usbmodem1411)
+#set(ARDUINO_DEFAULT_PORT /dev/tty.usbmodem1411)
+set(ARDUINO_DEFAULT_PORT /dev/ttyACM0)
 set(${CMAKE_PROJECT_NAME}_SKETCH interface_module.ino)
 generate_arduino_firmware(${CMAKE_PROJECT_NAME})

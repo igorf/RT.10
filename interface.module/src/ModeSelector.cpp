@@ -18,7 +18,10 @@ void ModeSelector::init(int initialMode) {
 
 int ModeSelector::getMode() {
     if (mode == MODE_RANDOM) {
-        return static_cast<int>(random(MODE_SLOW, MODE_FAST + 1));
+        if (random(1000) > 500) {
+            return MODE_SLOW;
+        }
+        return MODE_FAST;
     }
     return mode;
 }
