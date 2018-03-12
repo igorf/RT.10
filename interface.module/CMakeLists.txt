@@ -6,21 +6,23 @@ project(${PROJECT_NAME})
 link_directories(
         "../lib/VirtualWire"
         "../lib/TM74HC595-4dig-display-master"
+        "../lib/TimerOne"
 )
 
 include_directories(
         "../lib/VirtualWire"
         "../lib/TM74HC595-4dig-display-master"
+        "../lib/TimerOne"
         "src/"
 )
 
 file(GLOB_RECURSE TGT_SRC
         "src/*.cpp"
-        "interface_module.ino"
 )
 
 list(APPEND TGT_SRC "../lib/VirtualWire/VirtualWire.cpp")
 list(APPEND TGT_SRC "../lib/TM74HC595-4dig-display-master/TM74HC595Display.cpp")
+list(APPEND TGT_SRC "../lib/TimerOne/TimerOne.cpp")
 
 set(ARDUINO_DEFAULT_BOARD uno)
 set(ARDUINO_DEFAULT_PORT /dev/tty.usbmodem1411)
