@@ -6,7 +6,7 @@
 
 class RunStarter {
 public:
-    void init(uint8_t horns, uint8_t start);
+    void init(uint8_t horns, uint8_t start, uint8_t cancel);
     void arm();
     void disarm();
     bool check();
@@ -14,6 +14,8 @@ public:
 protected:
     Button *hornsButton;
     Button *startButton;
+    Button *cancelButton;
+
     bool ready = true;
     bool hornsArmed = false;
 

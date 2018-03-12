@@ -8,16 +8,17 @@ ModeSelector modeSelector;
 RunStarter runStarter;
 CommandSender commandSender;
 
-const uint8_t SENDER_PIN = 1;
-const uint8_t HORNS_PIN = 5;
-const uint8_t START_PIN = 3;
+const uint8_t SENDER_PIN    = 1;
+const uint8_t HORNS_PIN     = 5;
+const uint8_t START_PIN     = 3;
+const uint8_t CANCEL_PIN    = 6;
 const unsigned long RUN_DELAY = 4000;
 
 int nextCommand = -1;
 
 void setup() {
     modeSelector.init(ModeSelector::MODE_SLOW);
-    runStarter.init(HORNS_PIN, START_PIN);
+    runStarter.init(HORNS_PIN, START_PIN, CANCEL_PIN);
     commandSender.init(SENDER_PIN);
     MsTimer2::set(RUN_DELAY, startTarget);
 }
