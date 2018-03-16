@@ -15,11 +15,6 @@ private:
     int count = 0;
     void display();
     TM74HC595Display *disp;
-
-    unsigned char DIGITS[10] = {
-            0xC0,0xF9, 0xA4, 0xB0, 0x99, 0x92, 0x82, 0xF8, 0x80, 0x90
-    };
-    unsigned char DOT = 0xFE;
 };
 
 
