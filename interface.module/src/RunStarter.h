@@ -22,8 +22,8 @@ protected:
     const int START_SOURCE_HORNS = 100;
     const int START_SOURCE_BUTTON = 200;
     const int START_SOURCE_INIT = -1;
-    const unsigned long BUTTON_START_DELAY = 4000;
-    const unsigned long HORNS_START_DELAY = 3500;
+    const unsigned long BUTTON_START_DELAY = 3500;
+    const unsigned long HORNS_START_DELAY = 3000;
 
     int startSource = -1;
 };
