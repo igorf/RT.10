@@ -31,9 +31,11 @@ void setup() {
 
 void loop() {
     modeSelector.select();
-    if (runStarter.check()) {
+    unsigned long startDelay = runStarter.check();
+    if (startDelay > 0) {
         nextCommand = modeSelector.getMode();
         Serial.println("Start timer...");
+        MsTimer2::set(startDelay, startTarget);
         MsTimer2::start();
     }
     delay(10);

@@ -9,7 +9,7 @@ void RunStarter::init(uint8_t hornsPin, uint8_t startPin, uint8_t cancelPin) {
     ready = false;
 }
 
-long RunStarter::check() {
+unsigned long RunStarter::check() {
     if (ready) {
         hornsButton->read();
         if (hornsArmed && hornsButton->isPressed()) {
