@@ -9,7 +9,7 @@ public:
     void init(uint8_t horns, uint8_t start, uint8_t cancel);
     void arm();
     void disarm();
-    bool check();
+    long check();
 
 protected:
     Button *hornsButton;
@@ -22,6 +22,8 @@ protected:
     const int START_SOURCE_HORNS = 100;
     const int START_SOURCE_BUTTON = 200;
     const int START_SOURCE_INIT = -1;
+    const long BUTTON_START_DELAY = 4000;
+    const long HORNS_START_DELAY = 3500;
 
     int startSource = -1;
 };

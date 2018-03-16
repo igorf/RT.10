@@ -3,28 +3,27 @@
 #include "RunStarter.h"
 
 void RunStarter::init(uint8_t hornsPin, uint8_t startPin, uint8_t cancelPin) {
-
     hornsButton     = new Button(hornsPin, false, true, 200);
     startButton     = new Button(startPin, false, false, 100);
     cancelButton    = new Button(cancelPin, false, false, 100);
     ready = false;
 }
 
-bool RunStarter::check() {
+long RunStarter::check() {
     if (ready) {
         hornsButton->read();
         if (hornsArmed && hornsButton->isPressed()) {
             disarm();
             hornsArmed = false;
             startSource = START_SOURCE_HORNS;
-            return true;
+            return HORNS_START_DELAY;
         }
 
         startButton->read();
         if (startButton->isPressed()) {
             startSource = START_SOURCE_BUTTON;
             disarm();
-            return true;
+            return BUTTON_START_DELAY;
         }
     } else {
         cancelButton->read();
@@ -53,7 +52,7 @@ bool RunStarter::check() {
         }
     }
 
-    return false;
+    return 0;
 }
 
 void RunStarter::disarm() {
