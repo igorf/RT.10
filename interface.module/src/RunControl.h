@@ -3,6 +3,7 @@
 
 #include <stdint.h>
 #include <Button.h>
+#include "CommunicationCommands.h"
 
 class RunControl {
 public:
@@ -14,8 +15,8 @@ protected:
     Button *resetButton;
 
 private:
-    const int STOP_COMMAND = 200;
-    const int RESET_COMMAND = 300;
+    const int STOP_COMMAND = CommunicationCommands::STOP;
+    const int RESET_COMMAND = CommunicationCommands::RESET;
 };
 
 

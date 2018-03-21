@@ -2,6 +2,7 @@
 #define INTERFACE_MODULE_MODESELECTOR_H
 
 #include "SelectableButton.h"
+#include "CommunicationCommands.h"
 
 class ModeSelector {
 public:
@@ -9,8 +10,8 @@ public:
     void select();
     int getMode();
 
-    static const int MODE_SLOW = 0;
-    static const int MODE_FAST = 1;
+    static const int MODE_SLOW = CommunicationCommands::RUN_SLOW;
+    static const int MODE_FAST = CommunicationCommands::RUN_FAST;
     static const int MODE_RANDOM = 2;
 
 private:
