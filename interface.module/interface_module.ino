@@ -12,7 +12,6 @@ CommandSender commandSender;
 RunCounter runCounter;
 RunControl runControl;
 
-const uint8_t SENDER_PIN    = 1;
 const uint8_t STOP_PIN      = 2;
 const uint8_t START_PIN     = 3;
 const uint8_t RESET_PIN     = 4;
@@ -21,6 +20,7 @@ const uint8_t CANCEL_PIN    = 6;
 const uint8_t CNT_SCLK_PIN  = 8;
 const uint8_t CNT_RCLK_PIN  = 9;
 const uint8_t CNT_DIO_PIN   = 10;
+const uint8_t SENDER_PIN    = 11;
 
 const unsigned long RUN_DELAY = 4000;
 
@@ -49,8 +49,6 @@ void loop() {
     if (runCommand > 0) {
         commandSender.send(runCommand);
     }
-
-    delay(10);
 }
 
 void startTarget() {
