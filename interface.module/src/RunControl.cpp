@@ -30,6 +30,5 @@ int RunControl::check() {
         resetReady = true;
         return 0;
     }
-
     return 0;
 }
