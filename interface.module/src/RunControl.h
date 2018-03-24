@@ -17,6 +17,8 @@ protected:
 private:
     const int STOP_COMMAND = CommunicationCommands::STOP;
     const int RESET_COMMAND = CommunicationCommands::RESET;
+    boolean stopReady = false;
+    boolean resetReady = false;
 };
 
 
