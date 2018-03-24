@@ -14,6 +14,6 @@ void CommandSender::init(uint8_t senderPort) {
 void CommandSender::send(int command) {
     int data[1] = {command};
     vw_send((uint8_t *)data, sizeof(data));
-    vw_wait_tx();
+    //vw_wait_tx();
     Serial.println(command);
 }
