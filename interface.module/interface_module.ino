@@ -6,11 +6,11 @@
 #include "src/RunControl.h"
 #include <MsTimer2.h>
 
-ModeSelector modeSelector;
-RunStarter runStarter;
-CommandSender commandSender;
-RunCounter runCounter;
-RunControl runControl;
+ModeSelector    *modeSelector   = new ModeSelector();
+RunStarter      *runStarter     = new RunStarter();
+CommandSender   *commandSender  = new CommandSender();
+RunCounter      *runCounter     = new RunCounter();
+RunControl      *runControl     = new RunControl();
 
 const uint8_t STOP_PIN      = 2;
 const uint8_t START_PIN     = 3;
@@ -27,34 +27,34 @@ const unsigned long RUN_DELAY = 4000;
 int nextCommand = -1;
 
 void setup() {
-    runCounter.init(CNT_SCLK_PIN, CNT_RCLK_PIN, CNT_DIO_PIN);
-    modeSelector.init(ModeSelector::MODE_SLOW);
-    runStarter.init(HORNS_PIN, START_PIN, CANCEL_PIN);
-    runControl.init(STOP_PIN, RESET_PIN);
-    commandSender.init(SENDER_PIN);
+    runCounter->init(CNT_SCLK_PIN, CNT_RCLK_PIN, CNT_DIO_PIN);
+    modeSelector->init(ModeSelector::MODE_SLOW);
+    runStarter->init(HORNS_PIN, START_PIN, CANCEL_PIN);
+    runControl->init(STOP_PIN, RESET_PIN);
+    commandSender->init(SENDER_PIN);
     MsTimer2::set(RUN_DELAY, startTarget);
 }
 
 void loop() {
-    modeSelector.select();
-    unsigned long startDelay = runStarter.check();
+    modeSelector->select();
+    unsigned long startDelay = runStarter->check();
     if (startDelay > 0) {
-        nextCommand = modeSelector.getMode();
+        nextCommand = modeSelector->getMode();
         Serial.println("Start timer...");
         MsTimer2::set(startDelay, startTarget);
         MsTimer2::start();
     }
 
-    int runCommand = runControl.check();
+    int runCommand = runControl->check();
     if (runCommand > 0) {
-        commandSender.send(runCommand);
+        commandSender->send(runCommand);
     }
 }
 
 void startTarget() {
-    runCounter.inc();
+    runCounter->inc();
     MsTimer2::stop();
     Serial.print("Start command >> ");
-    commandSender.send(nextCommand);
-    runStarter.arm();
+    commandSender->send(nextCommand);
+    runStarter->arm();
 }
