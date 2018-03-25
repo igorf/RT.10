@@ -19,6 +19,7 @@ include_directories(
         "../lib/Button-master"
         "../lib/adafruit-Adafruit-Motor-Shield-library-99381df"
         "../lib/AccelStepper"
+        "../common"
         "src/"
 )
 

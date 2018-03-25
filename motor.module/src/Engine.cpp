@@ -1,4 +1,5 @@
 #include "Engine.h"
+#include <CommunicationCommands.h>
 
 void Engine::init(AccelStepper *stepperPtr, int slowRPM, int fastRPM, uint8_t leftButton, uint8_t rightButton) {
     slowSpeed = slowRPM;
@@ -9,29 +10,32 @@ void Engine::init(AccelStepper *stepperPtr, int slowRPM, int fastRPM, uint8_t le
 }
 
 void Engine::command(int command) {
-    if (command == 0 || command == 3) {
+    if (command == CommunicationCommands::RUN_SLOW || command == CommunicationCommands::RESET) {
         if (!isRunning) {
             runSlow();
         }
-    } else if (command == 1) {
+    } else if (command == CommunicationCommands::RUN_FAST) {
         if (!isRunning) {
             runFast();
         }
-    } else if (command == 2) {
-        isRunning = false;
-        if (stepper->isRunning()) {
-            stepper->stop();
-        }
+    } else if (command == CommunicationCommands::STOP) {
+        stop();
     }
 
     if (isRunning) {
         currentStopButton->read();
         if (currentStopButton->isPressed()) {
-            isRunning = false;
-            if (stepper->isRunning()) {
-                stepper->stop();
-            }
+            stop();
+        } else {
+            stepper->runSpeed();
         }
+    }
+}
+
+void Engine::stop() {
+    isRunning = false;
+    if (stepper->isRunning()) {
+        stepper->stop();
     }
 }
 
@@ -54,21 +58,21 @@ void Engine::runFast() {
 int Engine::getDirection() {
     leftStopButton->read();
     if (leftStopButton->isPressed()) {
-        lastStopBorder = 1;
-        return 1;
+        lastStopBorder = LEFT_STOPPER;
+        return DIRECTION_FORWARD;
     }
 
     rightStopButton->read();
     if (rightStopButton->isPressed()) {
-        lastStopBorder = 2;
-        return -1;
+        lastStopBorder = RIGHT_STOPPER;
+        return DIRECTION_BACKWARD;
     }
 
-    if (lastStopBorder == 2) {
-        return -1;
+    if (lastStopBorder == RIGHT_STOPPER) {
+        return DIRECTION_BACKWARD;
     }
 
-    return 1;
+    return DIRECTION_FORWARD;
 }
 
 boolean Engine::running() {
@@ -76,7 +80,7 @@ boolean Engine::running() {
 }
 
 Button* Engine::getCurrentStopButton(int direction) {
-    if (direction == 1) {
+    if (direction == DIRECTION_FORWARD) {
         return rightStopButton;
     }
     return leftStopButton;

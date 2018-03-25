@@ -16,15 +16,15 @@ const int SLOW_RPM = 32;
 
 AF_Stepper motor(MOTOR_STEPS_PER_ROTATION, MOTOR_SLOT);
 
-void forwardstep() {
+void forwardStep() {
     motor.onestep(FORWARD, DOUBLE);
 }
 
-void backwardstep() {
+void backwardStep() {
     motor.onestep(BACKWARD, DOUBLE);
 }
 
-AccelStepper* stepper = new AccelStepper(forwardstep, backwardstep);
+AccelStepper* stepper = new AccelStepper(forwardStep, backwardStep);
 Communicator* communicator = new Communicator();
 Engine* engine = new Engine();
 
@@ -35,9 +35,5 @@ void setup() {
 
 void loop() {
     int command = communicator->getCommand();
-
     engine->command(command);
-    if (engine->running()) {
-        stepper->runSpeed();
-    }
 }

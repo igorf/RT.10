@@ -26,6 +26,13 @@ private:
     void runSlow();
     void runFast();
     void startEngine(int speed);
+    void stop();
+
+    static const int DIRECTION_FORWARD = 1;
+    static const int DIRECTION_BACKWARD = -1;
+
+    static const int LEFT_STOPPER = 1;
+    static const int RIGHT_STOPPER = 2;
 };
 
 #endif
