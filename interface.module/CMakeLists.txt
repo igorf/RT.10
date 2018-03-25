@@ -19,6 +19,7 @@ include_directories(
         "../lib/TM74HC595-4dig-display-master"
         "../lib/MsTimer2"
         "../lib/Button-master"
+        "../common"
         "src/"
 )
 
@@ -30,7 +31,6 @@ list(APPEND TGT_SRC "../lib/VirtualWire/VirtualWire.cpp")
 list(APPEND TGT_SRC "../lib/TM74HC595-4dig-display-master/TM74HC595Display.cpp")
 list(APPEND TGT_SRC "../lib/MsTimer2/MsTimer2.cpp")
 list(APPEND TGT_SRC "../lib/Button-master/Button.cpp")
-list(APPEND TGT_SRC "src/CommunicationCommands.h")
 
 set(${CMAKE_PROJECT_NAME}_BOARD nano)
 set(nano.build.mcu atmega328p)

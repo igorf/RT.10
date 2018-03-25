@@ -2,7 +2,7 @@
 #define INTERFACE_MODULE_MODESELECTOR_H
 
 #include "SelectableButton.h"
-#include "CommunicationCommands.h"
+#include <CommunicationCommands.h>
 
 class ModeSelector {
 public:
