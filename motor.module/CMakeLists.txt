@@ -31,7 +31,6 @@ list(APPEND TGT_SRC "../lib/VirtualWire/VirtualWire.cpp")
 list(APPEND TGT_SRC "../lib/Button-master/Button.cpp")
 list(APPEND TGT_SRC "../lib/adafruit-Adafruit-Motor-Shield-library-99381df/AFMotor.cpp")
 list(APPEND TGT_SRC "../lib/AccelStepper/AccelStepper.cpp")
-list(APPEND TGT_SRC "src/CommunicationCommands.h")
 
 set(${CMAKE_PROJECT_NAME}_BOARD uno)
 set(ARDUINO_DEFAULT_BOARD uno)
