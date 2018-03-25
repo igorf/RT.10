@@ -11,8 +11,8 @@ const uint8_t RIGHT_STOPPER_PIN = A2;
 
 const int MOTOR_STEPS_PER_ROTATION = 12;
 const int MOTOR_SLOT = 2;
-const int FAST_RPM = 55;
-const int SLOW_RPM = 28;
+const int FAST_RPM = 64;
+const int SLOW_RPM = 32;
 
 AF_Stepper motor(MOTOR_STEPS_PER_ROTATION, MOTOR_SLOT);
 
