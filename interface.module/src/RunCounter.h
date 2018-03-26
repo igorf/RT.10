@@ -10,10 +10,10 @@ public:
     void init(uint8_t sclk, uint8_t rclk, uint8_t dio);
     void inc();
     void reset();
+    void display();
 
 private:
     int count = 0;
-    void display();
     TM74HC595Display *disp;
 };
 

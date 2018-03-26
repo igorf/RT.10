@@ -49,6 +49,7 @@ void loop() {
     if (runCommand > 0) {
         commandSender->send(runCommand);
     }
+    runCounter->display();
 }
 
 void startTarget() {
