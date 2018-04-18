@@ -20,7 +20,7 @@ private:
     SelectableButton buttons[BUTTONS_COUNT] = {
             SelectableButton(A0, A1, MODE_SLOW),
             SelectableButton(A2, A3, MODE_FAST),
-            SelectableButton(A4, A5, MODE_RANDOM),
+            SelectableButton(7, 12, MODE_RANDOM),
     };
     int mode = MODE_SLOW;
 
