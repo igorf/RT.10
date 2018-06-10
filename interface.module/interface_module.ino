@@ -12,6 +12,7 @@ CommandSender   *commandSender  = new CommandSender();
 RunCounter      *runCounter     = new RunCounter();
 RunControl      *runControl     = new RunControl();
 
+//TODO: Выексти в константы
 const uint8_t STOP_PIN          = 2;
 const uint8_t START_PIN         = 3;
 const uint8_t RESET_PIN         = 4;
@@ -21,8 +22,8 @@ const uint8_t CNT_SCLK_PIN      = 8;
 const uint8_t CNT_RCLK_PIN      = 9;
 const uint8_t CNT_DIO_PIN       = 10;
 const uint8_t SENDER_PIN        = 11;
-const uint8_t START_LIGHT_PIN   = -1;
-const uint8_t COUNT_RESET_PIN   = -1;
+const uint8_t START_LIGHT_PIN   = A4;
+const uint8_t COUNT_RESET_PIN   = A5;
 
 const unsigned long RUN_DELAY = 4000;
 
