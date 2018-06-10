@@ -6,7 +6,7 @@
 
 class RunStarter {
 public:
-    void init(uint8_t horns, uint8_t start, uint8_t cancel);
+    void init(uint8_t horns, uint8_t start, uint8_t cancel, uint8_t startIndicator);
     void arm();
     void disarm();
     unsigned long check();
@@ -26,6 +26,10 @@ protected:
     const unsigned long HORNS_START_DELAY = 3000;
 
     int startSource = -1;
+
+    uint8_t indicatorPin = -1;
+    void indicatorOn();
+    void indicatorOff();
 };
 
 

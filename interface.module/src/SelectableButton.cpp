@@ -1,4 +1,5 @@
 #include "SelectableButton.h"
+#include "GlobalConstants.h"
 
 SelectableButton::SelectableButton(uint8_t signal, uint8_t indicator, int modeInput) {
     signalPin = signal;
@@ -7,14 +8,14 @@ SelectableButton::SelectableButton(uint8_t signal, uint8_t indicator, int modeIn
 
     pinMode(indicatorPin, OUTPUT);
     pinMode(signalPin, INPUT);
-    digitalWrite(signalPin, SelectableButton::LIGHT_OFF_MODE);
+    digitalWrite(signalPin, GlobalConstants::LIGHT_MODE_OFF);
 }
 
 void SelectableButton::setSelected(int selected) {
     if (selected) {
-        digitalWrite(indicatorPin, SelectableButton::LIGHT_ON_MODE);
+        digitalWrite(indicatorPin, GlobalConstants::LIGHT_MODE_ON);
     } else {
-        digitalWrite(indicatorPin, SelectableButton::LIGHT_OFF_MODE);
+        digitalWrite(indicatorPin, GlobalConstants::LIGHT_MODE_OFF);
     }
 }
 
