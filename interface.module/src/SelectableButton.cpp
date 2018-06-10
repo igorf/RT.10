@@ -7,14 +7,14 @@ SelectableButton::SelectableButton(uint8_t signal, uint8_t indicator, int modeIn
 
     pinMode(indicatorPin, OUTPUT);
     pinMode(signalPin, INPUT);
-    digitalWrite(signalPin, LOW);
+    digitalWrite(signalPin, SelectableButton::LIGHT_OFF_MODE);
 }
 
 void SelectableButton::setSelected(int selected) {
     if (selected) {
-        digitalWrite(indicatorPin, HIGH);
+        digitalWrite(indicatorPin, SelectableButton::LIGHT_ON_MODE);
     } else {
-        digitalWrite(indicatorPin, LOW);
+        digitalWrite(indicatorPin, SelectableButton::LIGHT_OFF_MODE);
     }
 }
 

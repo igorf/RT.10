@@ -14,6 +14,9 @@ private:
     uint8_t signalPin;
     uint8_t indicatorPin;
     int mode;
+
+    uint8_t LIGHT_ON_MODE = LOW;
+    uint8_t LIGHT_OFF_MODE = HIGH;
 };
 
 
