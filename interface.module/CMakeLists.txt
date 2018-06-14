@@ -25,6 +25,7 @@ include_directories(
 
 file(GLOB_RECURSE TGT_SRC
         "src/*.cpp"
+        "src/GlobalConstants.h"
 )
 
 list(APPEND TGT_SRC "../lib/VirtualWire/VirtualWire.cpp")
