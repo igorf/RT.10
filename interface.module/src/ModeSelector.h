@@ -2,6 +2,7 @@
 #define INTERFACE_MODULE_MODESELECTOR_H
 
 #include "SelectableButton.h"
+#include "GlobalConstants.h"
 #include <CommunicationCommands.h>
 
 class ModeSelector {
@@ -18,9 +19,9 @@ private:
     static const int BUTTONS_COUNT = 3;
 
     SelectableButton buttons[BUTTONS_COUNT] = {
-            SelectableButton(A0, A1, MODE_SLOW),
-            SelectableButton(A2, A3, MODE_FAST),
-            SelectableButton(7, 12, MODE_RANDOM),
+            SelectableButton(GlobalConstants::SLOW_SIGNAL_PIN, GlobalConstants::SLOW_IND_PIN, MODE_SLOW),
+            SelectableButton(GlobalConstants::FAST_SIGNAL_PIN, GlobalConstants::FAST_IND_PIN, MODE_FAST),
+            SelectableButton(GlobalConstants::RND_SIGNAL_PIN, GlobalConstants::RND_IND_PIN, MODE_RANDOM),
     };
     int mode = MODE_SLOW;
 
