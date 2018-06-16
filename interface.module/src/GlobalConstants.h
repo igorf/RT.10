@@ -21,7 +21,7 @@ public:
     static const uint8_t CNT_RCLK_PIN      = 9;
     static const uint8_t CNT_DIO_PIN       = 10;
     static const uint8_t SENDER_PIN        = 11;
-    static const uint8_t START_LIGHT_PIN   = 0;
+    static const uint8_t START_LIGHT_PIN   = 1;
     static const uint8_t COUNT_RESET_PIN   = 13;
     static const uint8_t SLOW_SIGNAL_PIN   = A0;
     static const uint8_t SLOW_IND_PIN      = A1;
