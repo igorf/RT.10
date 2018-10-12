@@ -3,16 +3,10 @@
 #include "RunStarter.h"
 #include "GlobalConstants.h"
 
-void RunStarter::init(uint8_t hornsPin, uint8_t startPin, uint8_t cancelPin, uint8_t startIndicator) {
+void RunStarter::init(uint8_t hornsPin, uint8_t startPin) {
     hornsButton     = new Button(hornsPin, false, true, 200);
     startButton     = new Button(startPin, false, false, 100);
-    cancelButton    = new Button(cancelPin, false, false, 100);
-    indicatorPin = startIndicator;
-    if (indicatorPin > 0) {
-        pinMode(indicatorPin, OUTPUT);
-        digitalWrite(indicatorPin, GlobalConstants::LIGHT_MODE_OFF);
-    }
-    ready = false;
+    ready = true;
 }
 
 unsigned long RunStarter::check() {
@@ -27,12 +21,12 @@ unsigned long RunStarter::check() {
 
         startButton->read();
         if (startButton->isPressed()) {
+            Serial.println("Start button is pressed");
             startSource = START_SOURCE_BUTTON;
             disarm();
             return BUTTON_START_DELAY;
         }
     } else {
-        cancelButton->read();
         if (!hornsButton->isPressed()) {
             if (startSource == START_SOURCE_HORNS) {
                 Serial.println("Start sequence cancelled (rifle is back to horns)");
@@ -42,12 +36,6 @@ unsigned long RunStarter::check() {
             if (startSource == START_SOURCE_INIT) {
                 arm();
             }
-        }
-
-        if (cancelButton->isPressed()) {
-            Serial.println("Start sequence cancelled (cancel pressed)");
-            MsTimer2::stop();
-            arm();
         }
     }
 
@@ -72,13 +60,7 @@ void RunStarter::arm() {
 }
 
 void RunStarter::indicatorOn() {
-    if (indicatorPin > 0) {
-        digitalWrite(indicatorPin, GlobalConstants::LIGHT_MODE_ON);
-    }
 }
 
 void RunStarter::indicatorOff() {
-    if (indicatorPin > 0) {
-        digitalWrite(indicatorPin, GlobalConstants::LIGHT_MODE_OFF);
-    }
 }

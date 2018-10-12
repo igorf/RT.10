@@ -6,7 +6,7 @@
 
 class RunStarter {
 public:
-    void init(uint8_t horns, uint8_t start, uint8_t cancel, uint8_t startIndicator);
+    void init(uint8_t horns, uint8_t start);
     void arm();
     void disarm();
     unsigned long check();
@@ -14,7 +14,6 @@ public:
 protected:
     Button *hornsButton;
     Button *startButton;
-    Button *cancelButton;
 
     bool ready = true;
     bool hornsArmed = false;
@@ -27,7 +26,6 @@ protected:
 
     int startSource = -1;
 
-    uint8_t indicatorPin = -1;
     void indicatorOn();
     void indicatorOff();
 };

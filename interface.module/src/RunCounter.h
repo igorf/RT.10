@@ -8,16 +8,14 @@
 
 class RunCounter {
 public:
-    void init(uint8_t clk, uint8_t dio, uint8_t resetPin);
+    void init(uint8_t clk, uint8_t dio);
     void inc();
     void reset();
     void display();
-    void iterate();
 
 private:
     int count = 0;
     TM1637Display *disp;
-    Button *resetButton;
 };
 
 

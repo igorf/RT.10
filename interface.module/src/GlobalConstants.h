@@ -16,14 +16,12 @@ public:
     static const uint8_t START_PIN         = 3;
     static const uint8_t RESET_PIN         = 4;
     static const uint8_t HORNS_PIN         = 5;
-    static const uint8_t CANCEL_PIN        = -1;
 
     static const uint8_t CNT_SCLK_PIN      = 9;
     static const uint8_t CNT_DIO_PIN       = 8;
 
     static const uint8_t SENDER_PIN        = 11;
 
-    static const uint8_t START_LIGHT_PIN   = -1;
     static const uint8_t COUNT_RESET_PIN   = 6;
 
     static const uint8_t SLOW_SIGNAL_PIN   = A1;
