@@ -8,8 +8,8 @@
 
 class GlobalConstants {
 public:
-    static const uint8_t LIGHT_MODE_ON = LOW;
-    static const uint8_t LIGHT_MODE_OFF = HIGH;
+    static const uint8_t LIGHT_MODE_ON = HIGH;
+    static const uint8_t LIGHT_MODE_OFF = LOW;
 
     // Pinout
     static const uint8_t STOP_PIN          = 2;
