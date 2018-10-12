@@ -16,7 +16,7 @@ link_directories(
 
 include_directories(
         "../lib/VirtualWire"
-        "../lib/TM74HC595-4dig-display-master"
+        "../lib/TM1637-master"
         "../lib/MsTimer2"
         "../lib/Button-master"
         "../common"
@@ -29,7 +29,7 @@ file(GLOB_RECURSE TGT_SRC
 )
 
 list(APPEND TGT_SRC "../lib/VirtualWire/VirtualWire.cpp")
-list(APPEND TGT_SRC "../lib/TM74HC595-4dig-display-master/TM74HC595Display.cpp")
+list(APPEND TGT_SRC "../lib/TM1637-master/TM1637Display.cpp")
 list(APPEND TGT_SRC "../lib/MsTimer2/MsTimer2.cpp")
 list(APPEND TGT_SRC "../lib/Button-master/Button.cpp")
 
@@ -37,7 +37,6 @@ set(${CMAKE_PROJECT_NAME}_BOARD nano)
 set(nano.build.mcu atmega328p)
 set(nano.upload.speed 57600)
 set(ARDUINO_DEFAULT_BOARD nano)
-set(ARDUINO_DEFAULT_PORT /dev/cu.wchusbserial1420)
-#set(ARDUINO_DEFAULT_PORT /dev/ttyACM0)
+set(ARDUINO_DEFAULT_PORT /dev/ttyUSB0)
 set(${CMAKE_PROJECT_NAME}_SKETCH interface_module.ino)
 generate_arduino_firmware(${CMAKE_PROJECT_NAME})

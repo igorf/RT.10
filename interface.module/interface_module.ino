@@ -16,6 +16,7 @@ RunControl      *runControl     = new RunControl();
 int nextCommand = -1;
 
 void setup() {
+    Serial.println("Starting program...");
     runCounter->init(GlobalConstants::CNT_SCLK_PIN, GlobalConstants::CNT_RCLK_PIN, GlobalConstants::CNT_DIO_PIN, GlobalConstants::COUNT_RESET_PIN);
     modeSelector->init(ModeSelector::MODE_SLOW);
     runStarter->init(GlobalConstants::HORNS_PIN, GlobalConstants::START_PIN, GlobalConstants::CANCEL_PIN, GlobalConstants::START_LIGHT_PIN);
