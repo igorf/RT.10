@@ -19,11 +19,11 @@ int nextCommand = -1;
 
 void setup() {
     Serial.println("Starting program...");
-    runCounter->init(GlobalConstants::CNT_SCLK_PIN, GlobalConstants::CNT_DIO_PIN);
+    runCounter->init();
     modeSelector->init(ModeSelector::MODE_SLOW);
-    runStarter->init(GlobalConstants::HORNS_PIN, GlobalConstants::START_PIN);
-    runControl->init(GlobalConstants::STOP_PIN, GlobalConstants::RESET_PIN);
-    commandSender->init(GlobalConstants::SENDER_PIN);
+    runStarter->init();
+    runControl->init();
+    commandSender->init();
     screenResetter->init(runCounter);
     MsTimer2::set(GlobalConstants::RUN_DELAY, startTarget);
 }

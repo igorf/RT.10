@@ -7,7 +7,7 @@
 
 class RunControl {
 public:
-    void init(uint8_t stop, uint8_t reset);
+    void init();
     int check();
 
 protected:

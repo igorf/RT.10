@@ -8,7 +8,7 @@
 
 class RunCounter {
 public:
-    void init(uint8_t clk, uint8_t dio);
+    void init();
     void inc();
     void reset();
     void display();

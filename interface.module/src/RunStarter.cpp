@@ -3,9 +3,9 @@
 #include "RunStarter.h"
 #include "GlobalConstants.h"
 
-void RunStarter::init(uint8_t hornsPin, uint8_t startPin) {
-    hornsButton     = new Button(hornsPin, false, true, 200);
-    startButton     = new Button(startPin, false, false, 100);
+void RunStarter::init() {
+    hornsButton = new Button(GlobalConstants::HORNS_PIN, false, true, 200);
+    startButton = new Button(GlobalConstants::START_PIN, false, false, 100);
     ready = true;
 }
 

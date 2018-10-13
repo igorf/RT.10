@@ -1,9 +1,10 @@
 #include <Arduino.h>
 #include "RunControl.h"
+#include "GlobalConstants.h"
 
-void RunControl::init(uint8_t stopPin, uint8_t resetPin) {
-    stopButton     = new Button(stopPin, false, false, 100);
-    resetButton    = new Button(resetPin, false, false, 100);
+void RunControl::init() {
+    stopButton     = new Button(GlobalConstants::STOP_PIN, false, false, 100);
+    resetButton    = new Button(GlobalConstants::RESET_PIN, false, false, 100);
     stopReady = true;
     resetReady = true;
 }

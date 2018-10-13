@@ -6,7 +6,7 @@
 
 class RunStarter {
 public:
-    void init(uint8_t horns, uint8_t start);
+    void init();
     void arm();
     void disarm();
     unsigned long check();

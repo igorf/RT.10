@@ -7,7 +7,7 @@
 class CommandSender {
 
 public:
-    void init(uint8_t senderPort);
+    void init();
     void send(int command);
 
 private:

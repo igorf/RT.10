@@ -1,7 +1,8 @@
 #include "RunCounter.h"
+#include "GlobalConstants.h"
 
-void RunCounter::init(uint8_t clk, uint8_t dio) {
-    disp = new TM1637Display(clk, dio);
+void RunCounter::init() {
+    disp = new TM1637Display(GlobalConstants::CNT_SCLK_PIN, GlobalConstants::CNT_DIO_PIN);
     disp->setBrightness(0x0f);
     display();
 }

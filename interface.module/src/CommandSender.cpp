@@ -1,9 +1,10 @@
 #include <HardwareSerial.h>
 #include <VirtualWire.h>
 #include "CommandSender.h"
+#include "GlobalConstants.h"
 
-void CommandSender::init(uint8_t senderPort) {
-    port = senderPort;
+void CommandSender::init() {
+    port = GlobalConstants::SENDER_PIN;
     Serial.begin(9600);
 
     vw_set_tx_pin(port);
