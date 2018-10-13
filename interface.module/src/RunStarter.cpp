@@ -18,7 +18,7 @@ void RunStarter::init() {
 unsigned long RunStarter::check() {
     if (ready) {
         hornsButton->read();
-        if (hornsArmed && hornsButton->isPressed()) {
+        if (hornsArmed && !hornsButton->isPressed()) {
             disarm();
             hornsArmed = false;
             startSource = START_SOURCE_HORNS;
@@ -33,7 +33,7 @@ unsigned long RunStarter::check() {
             return BUTTON_START_DELAY;
         }
     } else {
-        if (!hornsButton->isPressed()) {
+        if (hornsButton->isPressed()) {
             if (startSource == START_SOURCE_HORNS) {
                 Serial.println("Start sequence cancelled (rifle is back to horns)");
                 MsTimer2::stop();
@@ -47,7 +47,7 @@ unsigned long RunStarter::check() {
 
     if (!hornsArmed) {
         hornsButton->read();
-        if (!hornsButton->isPressed()) {
+        if (hornsButton->isPressed()) {
             hornsArmed = true;
         }
     }
