@@ -4,6 +4,7 @@
 #include "src/RunStarter.h"
 #include "src/RunCounter.h"
 #include "src/RunControl.h"
+#include "src/ScreenResetter.h"
 #include "src/GlobalConstants.h"
 #include <MsTimer2.h>
 
@@ -12,6 +13,7 @@ RunStarter      *runStarter     = new RunStarter();
 CommandSender   *commandSender  = new CommandSender();
 RunCounter      *runCounter     = new RunCounter();
 RunControl      *runControl     = new RunControl();
+ScreenResetter  *screenResetter = new ScreenResetter();
 
 int nextCommand = -1;
 
@@ -22,6 +24,7 @@ void setup() {
     runStarter->init(GlobalConstants::HORNS_PIN, GlobalConstants::START_PIN);
     runControl->init(GlobalConstants::STOP_PIN, GlobalConstants::RESET_PIN);
     commandSender->init(GlobalConstants::SENDER_PIN);
+    screenResetter->init(runCounter);
     MsTimer2::set(GlobalConstants::RUN_DELAY, startTarget);
 }
 
@@ -34,6 +37,8 @@ void loop() {
         MsTimer2::set(startDelay, startTarget);
         MsTimer2::start();
     }
+
+    screenResetter->check();
 
     int runCommand = runControl->check();
     if (runCommand > 0) {
