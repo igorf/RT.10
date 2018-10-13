@@ -26,8 +26,7 @@ protected:
 
     int startSource = -1;
 
-    void indicatorOn();
-    void indicatorOff();
+    void indicator(uint8_t indicator, bool on);
 };
 
 

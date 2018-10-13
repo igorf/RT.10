@@ -19,7 +19,7 @@ public:
     static const uint8_t START_LIGHT_PIN   = 7;
     static const uint8_t CNT_SCLK_PIN      = 9;
     static const uint8_t CNT_DIO_PIN       = 8;
-    static const uint8_t HORNS_LIGHT_PIN   = 10;
+    static const uint8_t HORNS_LIGHT_PIN   = 12;
     static const uint8_t SENDER_PIN        = 11;
 
     static const uint8_t SLOW_SIGNAL_PIN   = A1;

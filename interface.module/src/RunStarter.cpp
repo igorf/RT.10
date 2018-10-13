@@ -7,6 +7,12 @@ void RunStarter::init() {
     hornsButton = new Button(GlobalConstants::HORNS_PIN, false, true, 200);
     startButton = new Button(GlobalConstants::START_PIN, false, false, 100);
     ready = true;
+
+    pinMode(GlobalConstants::START_LIGHT_PIN, OUTPUT);
+    digitalWrite(GlobalConstants::START_LIGHT_PIN, GlobalConstants::LIGHT_MODE_OFF);
+
+    pinMode(GlobalConstants::HORNS_LIGHT_PIN, OUTPUT);
+    digitalWrite(GlobalConstants::HORNS_LIGHT_PIN, GlobalConstants::LIGHT_MODE_OFF);
 }
 
 unsigned long RunStarter::check() {
@@ -45,22 +51,22 @@ unsigned long RunStarter::check() {
             hornsArmed = true;
         }
     }
+    indicator(GlobalConstants::HORNS_LIGHT_PIN, hornsArmed);
 
     return 0;
 }
 
 void RunStarter::disarm() {
-    indicatorOn();
+    indicator(GlobalConstants::START_LIGHT_PIN, true);
     ready = false;
 }
 
 void RunStarter::arm() {
-    indicatorOff();
+    indicator(GlobalConstants::START_LIGHT_PIN, false);
     ready = true;
 }
 
-void RunStarter::indicatorOn() {
-}
-
-void RunStarter::indicatorOff() {
+void RunStarter::indicator(uint8_t indicator, bool on) {
+    uint8_t mode = on ? GlobalConstants::LIGHT_MODE_ON : GlobalConstants::LIGHT_MODE_OFF;
+    digitalWrite(indicator, mode);
 }
