@@ -4,7 +4,7 @@
 #include "GlobalConstants.h"
 
 void RunStarter::init() {
-    hornsButton = new Button(GlobalConstants::HORNS_PIN, false, true, 200);
+    hornsButton = new Button(GlobalConstants::HORNS_PIN, true, true, 200);
     startButton = new Button(GlobalConstants::START_PIN, false, false, 100);
     ready = true;
 
