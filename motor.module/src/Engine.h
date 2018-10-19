@@ -2,30 +2,32 @@
 #define ENGINE_MODULE_ENGINE_H
 
 #include <Arduino.h>
-#include <AFMotor.h>
 #include <AccelStepper.h>
-#include <Button.h>
+#include "CardReader.h"
+#include "FinishButton.h"
 
 class Engine {
 public:
-    void init(AccelStepper *stepperPtr, int slowRPM, int fastRPM, uint8_t leftButton, uint8_t rightButton);
+    void init(CardReader* cardReader);
     void command(int command);
-    boolean running();
 private:
-    int slowSpeed = 0;
-    int fastSpeed = 0;
+    float slowSpeed = 0;
+    float fastSpeed = 0;
     int lastStopBorder = 0;
-    AccelStepper *stepper;
+    int reverse = 1;
     boolean isRunning = false;
-    Button *leftStopButton;
-    Button *rightStopButton;
-    Button *currentStopButton;
+
+    CardReader *cardReader;
+    AccelStepper *stepper;
+    FinishButton *leftStopButton;
+    FinishButton *rightStopButton;
+    FinishButton *currentStopButton;
 
     int getDirection();
-    Button *getCurrentStopButton(int direction);
+    FinishButton *getCurrentStopButton(int direction);
     void runSlow();
     void runFast();
-    void startEngine(int speed);
+    void startEngine(float speed);
     void stop();
 
     static const int DIRECTION_FORWARD = 1;

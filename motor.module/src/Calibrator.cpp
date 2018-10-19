@@ -2,8 +2,8 @@
 #include "Calibrator.h"
 
 void Calibrator::init(uint8_t leftPin, uint8_t rightPin) {
-    buttons[0] = new Button(leftPin, false, false, 100);
-    buttons[1] = new Button(rightPin, false, false, 100);
+    buttons[0] = new FinishButton(leftPin);
+    buttons[1] = new FinishButton(rightPin);
 }
 
 void Calibrator::display() {
@@ -19,7 +19,7 @@ void Calibrator::disarm() {
     armed = false;
 }
 
-void Calibrator::start(Button *startButton) {
+void Calibrator::start(FinishButton *startButton) {
     startMeasureButton = startButton;
     timeBorder = millis();
     measuring = true;
@@ -59,7 +59,6 @@ void Calibrator::check() {
     }
 
     for (auto &button : buttons) {
-        button->read();
         if (button->isPressed()) {
             if (!measuring) {
                 start(button);

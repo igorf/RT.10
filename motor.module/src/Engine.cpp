@@ -1,12 +1,16 @@
 #include "Engine.h"
+#include "GlobalConstants.h"
 #include <CommunicationCommands.h>
 
-void Engine::init(AccelStepper *stepperPtr, int slowRPM, int fastRPM, uint8_t leftButton, uint8_t rightButton) {
-    slowSpeed = slowRPM;
-    fastSpeed = fastRPM;
-    leftStopButton = new Button(leftButton, false, false, 1);
-    rightStopButton = new Button(rightButton, false, false, 1);
-    stepper = stepperPtr;
+void Engine::init(CardReader* cardReader) {
+    stepper = new AccelStepper(1, GlobalConstants::PULL_PIN, GlobalConstants::DIR_PIN);
+    this->cardReader = cardReader;
+
+    slowSpeed = cardReader->readFloatFromFile("rpm.slow.ini", 1.0);
+    fastSpeed = cardReader->readFloatFromFile("rpm.fast.ini", 2.0);
+    reverse = cardReader->readIntFromFile("reverse.ini", 1);
+    leftStopButton = new FinishButton(GlobalConstants::LEFT_STOPPER_PIN);
+    rightStopButton = new FinishButton(GlobalConstants::RIGHT_STOPPER_PIN);
 }
 
 void Engine::command(int command) {
@@ -24,7 +28,7 @@ void Engine::command(int command) {
 
     if (isRunning) {
         currentStopButton->read();
-        if (currentStopButton->isPressed()) {
+        if (currentStopButton->wasPressed()) {
             stop();
         } else {
             stepper->runSpeed();
@@ -39,11 +43,12 @@ void Engine::stop() {
     }
 }
 
-void Engine::startEngine(int speed) {
+void Engine::startEngine(float speed) {
     int direction = getDirection();
     currentStopButton = getCurrentStopButton(direction);
-    stepper->setMaxSpeed(speed * direction);
-    stepper->setSpeed(speed * direction);
+    currentStopButton->reset();
+    stepper->setMaxSpeed(speed * direction * reverse);
+    stepper->setSpeed(speed * direction * reverse);
     isRunning = true;
 }
 
@@ -56,13 +61,11 @@ void Engine::runFast() {
 }
 
 int Engine::getDirection() {
-    leftStopButton->read();
     if (leftStopButton->isPressed()) {
         lastStopBorder = LEFT_STOPPER;
         return DIRECTION_FORWARD;
     }
 
-    rightStopButton->read();
     if (rightStopButton->isPressed()) {
         lastStopBorder = RIGHT_STOPPER;
         return DIRECTION_BACKWARD;
@@ -75,11 +78,7 @@ int Engine::getDirection() {
     return DIRECTION_FORWARD;
 }
 
-boolean Engine::running() {
-    return isRunning;
-}
-
-Button* Engine::getCurrentStopButton(int direction) {
+FinishButton* Engine::getCurrentStopButton(int direction) {
     if (direction == DIRECTION_FORWARD) {
         return rightStopButton;
     }

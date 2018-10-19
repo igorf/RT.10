@@ -2,7 +2,7 @@
 #define ENGINE_MODULE_CALIBRATOR_H
 
 #include <Arduino.h>
-#include <Button.h>
+#include "FinishButton.h"
 
 class Calibrator {
 public:
@@ -12,14 +12,14 @@ public:
     void reset();
     void commandFromCommunicator(int command);
 private:
-    Button *buttons[2];
-    Button *startMeasureButton;
+    FinishButton *buttons[2];
+    FinishButton *startMeasureButton;
     boolean armed = false;
     boolean measuring = false;
     long result = 0;
     long timeBorder = 0;
     void display();
-    void start(Button *startButton);
+    void start(FinishButton *startButton);
     void stop();
     void check();
 };

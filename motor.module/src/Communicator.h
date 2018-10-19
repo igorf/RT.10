@@ -6,7 +6,7 @@
 
 class Communicator {
     public:
-        void init(uint8_t rx_pin);
+        void init();
         int getCommand();
 };
 
