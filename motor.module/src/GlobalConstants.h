@@ -13,10 +13,10 @@ public:
     static const uint8_t LEFT_STOPPER_PIN   = 9;
     static const uint8_t RIGHT_STOPPER_PIN  = 8;
 
-    static const uint8_t PULL_PIN           = 7;
+    static const uint8_t PULL_PIN           = 4;
     static const uint8_t DIR_PIN            = 6;
 
     static const uint8_t INIT_PIN           = 5; // Система инициализирована (светодиод)
 
-    static const uint8_t COMMUNICATOR_PIN   = 4;
+    static const uint8_t COMMUNICATOR_PIN   = 7;
 };

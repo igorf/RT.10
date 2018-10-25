@@ -2,12 +2,10 @@
 #include "GlobalConstants.h"
 
 void Communicator::init() {
-  Serial.begin(9600);
-
-  vw_set_rx_pin(GlobalConstants::COMMUNICATOR_PIN);
-  vw_set_ptt_inverted(true);
-  vw_setup(2000);
-  vw_rx_start();    
+    vw_set_rx_pin(GlobalConstants::COMMUNICATOR_PIN);
+    vw_set_ptt_inverted(true);
+    vw_setup(2000);
+    vw_rx_start();
 }
 
 int Communicator::getCommand() {
